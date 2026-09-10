@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pedro Lozano — Gestão de Pessoas, DHO &amp; Liderança</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green:  #67C089;
+    --blue:   #4A8AC9;
+    --purple: #6D4C9E;
+    --pink:   #EC1C5C;
+
+    --bg-body:     #0e0e1a;
+    --bg-card:     #14141e;
+    --bg-card-2:   #191925;
+
+    --white:       #ffffff;
+    --white-90:    rgba(255,255,255,0.92);
+    --white-80:    rgba(255,255,255,0.80);
+    --white-55:    rgba(255,255,255,0.55);
+    --white-32:    rgba(255,255,255,0.32);
+    --white-14:    rgba(255,255,255,0.14);
+    --white-08:    rgba(255,255,255,0.08);
+  }
+
+  * , *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: var(--bg-body);
+    color: var(--white);
+    line-height: 1.5;
+    overflow-x: hidden;
+  }
+
+  /* background gradient wash */
+  .bg-glow {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background:
+      radial-gradient(ellipse 900px 600px at 12% -5%, rgba(109,76,158,0.35), transparent 60%),
+      radial-gradient(ellipse 800px 650px at 90% 15%, rgba(74,138,201,0.28), transparent 60%),
+      radial-gradient(ellipse 700px 600px at 15% 60%, rgba(103,192,137,0.14), transparent 65%),
+      radial-gradient(ellipse 800px 700px at 95% 90%, rgba(236,28,92,0.16), transparent 65%),
+      var(--bg-body);
+  }
+
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 28px; }
+
+  a { color: inherit; text-decoration: none; }
+
+  /* ===== NAV ===== */
+  nav {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(10,10,16,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--white-08);
+  }
+  .nav-inner {
+    max-width: 1080px; margin: 0 auto; padding: 0 28px;
+    height: 64px; display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-name { font-weight: 700; font-size: 15px; letter-spacing: -0.2px; }
+  .nav-name span { color: var(--white-55); font-weight: 400; }
+  .nav-links { display: flex; gap: 28px; font-size: 13px; color: var(--white-55); font-weight: 500; }
+  .nav-links a:hover { color: var(--white); }
+  .nav-cta {
+    background: var(--white); color: var(--purple); font-weight: 700;
+    border-radius: 100px; padding: 9px 20px; font-size: 13px;
+  }
+  @media (max-width: 720px) { .nav-links { display: none; } }
+
+  /* ===== HERO ===== */
+  .hero { padding: 88px 0 64px; position: relative; }
+  .tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--white-55);
+    border: 1px solid var(--white-14); border-radius: 100px;
+    padding: 6px 14px; margin-bottom: 24px;
+  }
+  .tag-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); }
+  h1.hero-title {
+    font-size: clamp(34px, 5vw, 58px); font-weight: 800; letter-spacing: -0.025em;
+    line-height: 1.08; max-width: 780px;
+  }
+  .hero-title .accent {
+    background: linear-gradient(90deg, var(--green), var(--blue), var(--purple), var(--pink));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .hero-sub {
+    font-size: clamp(15px, 1.6vw, 18px); color: var(--white-80); margin-top: 22px;
+    max-width: 640px; line-height: 1.65;
+  }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+  .btn-p { background: var(--white); color: var(--purple); font-weight: 700; border: none; border-radius: 100px; padding: 13px 28px; font-size: 14px; display: inline-block; }
+  .btn-s { background: transparent; color: var(--white); border: 1.5px solid var(--white-32); border-radius: 100px; padding: 13px 28px; font-size: 14px; display: inline-block; }
+
+  .hero-meta { display: flex; flex-wrap: wrap; gap: 24px; margin-top: 44px; color: var(--white-55); font-size: 13px; }
+  .hero-meta strong { color: var(--white-90); font-weight: 600; }
+
+  /* ===== SECTION SHELL ===== */
+  section { padding: 72px 0; border-top: 1px solid var(--white-08); }
+  .eyebrow {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--white-55); margin-bottom: 12px;
+  }
+  h2.section-title { font-size: clamp(24px, 3vw, 34px); font-weight: 800; letter-spacing: -0.02em; max-width: 640px; }
+  .section-desc { color: var(--white-80); max-width: 620px; margin-top: 14px; font-size: 15px; line-height: 1.65; }
+
+  /* ===== METRICS ===== */
+  .metrics-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 40px;
+  }
+  .metric-card {
+    background: var(--bg-card); border: 1px solid var(--white-08); border-radius: 14px;
+    padding: 20px 18px; border-top: 3px solid var(--blue);
+  }
+  .metric-card.g { border-top-color: var(--green); }
+  .metric-card.p { border-top-color: var(--purple); }
+  .metric-card.r { border-top-color: var(--pink); }
+  .metric-num { font-size: 22px; font-weight: 800; letter-spacing: -0.01em; }
+  .metric-label { font-size: 12.5px; color: var(--white-55); margin-top: 6px; line-height: 1.4; }
+  @media (max-width: 860px) { .metrics-grid { grid-template-columns: repeat(2, 1fr); } }
+
+  /* ===== AREAS / CHIPS ===== */
+  .chip-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 32px; }
+  .chip {
+    font-size: 13px; font-weight: 600; padding: 10px 18px; border-radius: 100px;
+    border: 1px solid var(--white-14); color: var(--white-90);
+    background: rgba(255,255,255,0.03);
+  }
+  .chip.g { border-color: rgba(103,192,137,0.4); background: rgba(103,192,137,0.08); color: #a8dbc0; }
+  .chip.b { border-color: rgba(74,138,201,0.4); background: rgba(74,138,201,0.08); color: #a0c4e8; }
+  .chip.p { border-color: rgba(109,76,158,0.4); background: rgba(109,76,158,0.08); color: #cbb8ea; }
+  .chip.r { border-color: rgba(236,28,92,0.4); background: rgba(236,28,92,0.08); color: #f5a0b8; }
+
+  /* ===== TIMELINE ===== */
+  .timeline { margin-top: 40px; position: relative; padding-left: 28px; border-left: 2px solid var(--white-08); }
+  .tl-item { position: relative; padding-bottom: 36px; }
+  .tl-item:last-child { padding-bottom: 0; }
+  .tl-dot {
+    position: absolute; left: -34px; top: 4px; width: 12px; height: 12px; border-radius: 50%;
+    background: var(--bg-body); border: 2px solid var(--blue);
+  }
+  .tl-item.g .tl-dot { border-color: var(--green); }
+  .tl-item.p .tl-dot { border-color: var(--purple); }
+  .tl-period { font-size: 12px; color: var(--white-55); font-weight: 600; letter-spacing: 0.03em; }
+  .tl-role { font-size: 17px; font-weight: 700; margin-top: 4px; }
+  .tl-org { font-size: 13px; color: var(--white-55); font-weight: 500; margin-top: 1px; }
+  .tl-desc { font-size: 14px; color: var(--white-80); margin-top: 8px; max-width: 640px; line-height: 1.6; }
+
+  /* ===== METODOLOGIA ===== */
+  .method-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 40px; }
+  .method-card {
+    background: var(--bg-card); border: 1px solid var(--white-08); border-radius: 14px;
+    padding: 20px 22px; display: flex; gap: 16px; align-items: flex-start;
+  }
+  .method-num {
+    width: 30px; height: 30px; border-radius: 50%; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 800; color: var(--bg-body);
+    background: linear-gradient(135deg, var(--green), var(--blue));
+  }
+  .method-card:nth-child(2) .method-num { background: linear-gradient(135deg, var(--blue), var(--purple)); }
+  .method-card:nth-child(3) .method-num { background: linear-gradient(135deg, var(--purple), var(--pink)); }
+  .method-card:nth-child(4) .method-num { background: linear-gradient(135deg, var(--pink), var(--green)); }
+  .method-card:nth-child(5) .method-num { background: linear-gradient(135deg, var(--green), var(--purple)); }
+  .method-card:nth-child(6) .method-num { background: linear-gradient(135deg, var(--blue), var(--pink)); }
+  .method-card:nth-child(7) .method-num { background: linear-gradient(135deg, var(--purple), var(--blue)); }
+  .method-card:nth-child(8) .method-num { background: linear-gradient(135deg, var(--pink), var(--purple)); }
+  .method-title { font-size: 14.5px; font-weight: 700; }
+  .method-desc { font-size: 13px; color: var(--white-80); margin-top: 5px; line-height: 1.55; }
+  @media (max-width: 720px) { .method-grid { grid-template-columns: 1fr; } }
+
+  /* ===== CASES ===== */
+  .case-grid { display: grid; grid-template-columns: 1fr; gap: 18px; margin-top: 40px; }
+  .case-card {
+    background: var(--bg-card); border: 1px solid var(--white-08); border-radius: 16px;
+    padding: 28px 30px; position: relative; overflow: hidden;
+  }
+  .case-card::before {
+    content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  }
+  .case-card.tj::before { background: linear-gradient(90deg, var(--green), var(--blue)); }
+  .case-card.pimp::before { background: linear-gradient(90deg, var(--pink), var(--purple)); }
+  .case-card.net::before { background: linear-gradient(90deg, var(--blue), var(--purple)); }
+  .case-card.adus::before { background: linear-gradient(90deg, var(--purple), var(--green)); }
+  .case-top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 12px; margin-bottom: 14px; }
+  .case-org { font-size: 19px; font-weight: 800; letter-spacing: -0.01em; }
+  .case-role { font-size: 12.5px; color: var(--white-55); margin-top: 3px; }
+  .case-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .case-tag {
+    font-size: 10.5px; font-weight: 600; padding: 4px 10px; border-radius: 100px;
+    border: 1px solid var(--white-14); color: var(--white-80);
+  }
+  .case-body { font-size: 14px; color: var(--white-80); line-height: 1.65; margin-top: 6px; }
+  .case-results { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+  .result-pill {
+    font-size: 12.5px; font-weight: 600; color: var(--white-90);
+    background: rgba(255,255,255,0.05); border: 1px solid var(--white-08);
+    border-radius: 10px; padding: 8px 12px;
+  }
+  .result-pill b { color: var(--green); font-weight: 800; }
+
+  /* ===== MENTORIA INDIVIDUAL ===== */
+  .mentor-block { margin-top: 28px; }
+  .mentor-head { margin-bottom: 20px; }
+  .mentor-title { font-size: 16px; font-weight: 700; }
+  .mentor-sub { font-size: 13px; color: var(--white-55); margin-top: 6px; max-width: 620px; line-height: 1.55; }
+  .mentor-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .mentor-card {
+    background: rgba(255,255,255,0.03); border: 1px solid var(--white-08); border-radius: 14px;
+    padding: 18px 20px; border-left: 2px solid var(--green);
+  }
+  .mentor-role { font-size: 13.5px; font-weight: 700; }
+  .mentor-meta { font-size: 11px; color: var(--white-55); margin-top: 3px; margin-bottom: 12px; }
+  .mentor-line { font-size: 12.5px; color: var(--white-80); line-height: 1.55; margin-top: 8px; }
+  .mentor-line span { display: block; font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--white-55); margin-bottom: 3px; }
+  @media (max-width: 860px) { .mentor-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 600px) { .mentor-grid { grid-template-columns: 1fr; } }
+
+  /* ===== COMPETENCIAS ===== */
+  .comp-list { margin-top: 36px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px 40px; }
+  .comp-row { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--white-08); }
+  .comp-rank {
+    width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 800; flex-shrink: 0; border: 1.5px solid var(--white-32); color: var(--white-80);
+  }
+  .comp-row.top .comp-rank { border-color: var(--green); color: var(--green); background: rgba(103,192,137,0.1); }
+  .comp-text { font-size: 13.5px; color: var(--white-90); }
+  @media (max-width: 720px) { .comp-list { grid-template-columns: 1fr; } }
+
+  /* ===== FORMACAO ===== */
+  .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 36px; }
+  .edu-card { background: var(--bg-card); border: 1px solid var(--white-08); border-radius: 14px; padding: 20px 22px; }
+  .edu-inst { font-weight: 700; font-size: 14.5px; }
+  .edu-course { font-size: 13px; color: var(--white-80); margin-top: 4px; }
+  .edu-period { font-size: 11.5px; color: var(--white-55); margin-top: 8px; }
+  .cert-list { margin-top: 20px; display: flex; flex-wrap: wrap; gap: 8px; }
+  @media (max-width: 720px) { .edu-grid { grid-template-columns: 1fr; } }
+
+  /* ===== CONTACT ===== */
+  .contact-card {
+    margin-top: 40px; background: linear-gradient(135deg, rgba(103,192,137,0.12), rgba(236,28,92,0.10));
+    border: 1px solid var(--white-14); border-radius: 20px; padding: 44px;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px;
+  }
+  .contact-title { font-size: clamp(20px, 2.6vw, 28px); font-weight: 800; max-width: 420px; letter-spacing: -0.015em; }
+  .contact-links { display: flex; flex-direction: column; gap: 10px; font-size: 14px; }
+  .contact-links a { color: var(--white-90); font-weight: 600; }
+  .contact-links a:hover { color: var(--green); }
+
+  footer { padding: 36px 0 48px; text-align: center; color: var(--white-32); font-size: 12px; }
+  footer .brand { color: var(--white-55); font-weight: 600; }
+</style>
+</head>
+<body>
+
+<div class="bg-glow"></div>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-name">Pedro Lozano</div>
+    <div class="nav-links">
+      <a href="#sobre">Sobre</a>
+      <a href="#trajetoria">Trajetória</a>
+      <a href="#metodologia">Metodologia</a>
+      <a href="#casos">Casos</a>
+      <a href="#competencias">Competências</a>
+      <a href="#contato">Contato</a>
+    </div>
+    <a class="nav-cta" href="#contato">Contato</a>
+  </div>
+</nav>
+
+<header class="hero wrap">
+  <div class="tag"><span class="tag-dot"></span> São Paulo, SP · Disponível para novos projetos</div>
+  <h1 class="hero-title">Gestão de pessoas com <span class="accent">impacto real</span> no negócio.</h1>
+  <p class="hero-sub">
+    Executivo de RH Estratégico e HRBP com mais de 15 anos de experiência ajudando empresas e organizações
+    a desenvolverem sua gestão de pessoas de forma estruturada, conectada à estratégia e orientada a resultado —
+    em consultorias, empresas de médio/grande porte e organizações do terceiro setor.
+  </p>
+  <div class="hero-actions">
+    <a class="btn-p" href="#casos">Ver casos de atuação</a>
+    <a class="btn-s" href="mailto:pedrohmlozano@gmail.com">Falar com Pedro</a>
+  </div>
+  <div class="hero-meta">
+    <div><strong>15+ anos</strong> de carreira em gestão de pessoas</div>
+    <div><strong>7</strong> organizações atendidas como executivo ou consultor</div>
+    <div><strong>People &amp; Paths</strong> — Diretor de Consultoria desde 2019</div>
+  </div>
+</header>
+
+<section id="metrics" style="border-top:none; padding-top:0;">
+  <div class="wrap">
+    <div class="metrics-grid">
+      <div class="metric-card b">
+        <div class="metric-num">45→30 dias</div>
+        <div class="metric-label">redução do time to fill em posições técnicas com implantação de ATS (Netbr)</div>
+      </div>
+      <div class="metric-card r">
+        <div class="metric-num">200</div>
+        <div class="metric-label">avaliações de Apreciação 180° conduzidas em 4 ciclos anuais consecutivos (Pimp My Carroça)</div>
+      </div>
+      <div class="metric-card g">
+        <div class="metric-num">Canal de Denúncias</div>
+        <div class="metric-label">implantado no Pimp My Carroça/Cataki como estrutura formal de escuta institucional</div>
+      </div>
+      <div class="metric-card b">
+        <div class="metric-num">20 especialistas</div>
+        <div class="metric-label">formados no Programa de Desenvolvimento de Lideranças (PDL) da Netbr</div>
+      </div>
+      <div class="metric-card p">
+        <div class="metric-num">Coaching de Board</div>
+        <div class="metric-label">conduzido diretamente com a Diretoria Executiva da Netbr</div>
+      </div>
+      <div class="metric-card g">
+        <div class="metric-num">20 lideranças</div>
+        <div class="metric-label">formadas no Programa de Desenvolvimento de Lideranças (PDL) de uma empresa de logística do interior paulista</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="sobre">
+  <div class="wrap">
+    <div class="eyebrow">Perfil</div>
+    <h2 class="section-title">Atuo exatamente nos pontos onde as empresas mais travam com pessoas.</h2>
+    <p class="section-desc">
+      Liderança sem preparo, cultura que não acompanha a estratégia, times desmotivados, processos de RH que não
+      geram resultado — é nesses desafios que construí minha trajetória. Sou Diretor de Consultoria na People &amp; Paths
+      (Definindo Caminhos) desde 2019, onde atuo em Cultura Organizacional, Formação de Lideranças, Seleção e
+      Atração de Talentos, Desenvolvimento Organizacional, Mentoria e Coaching Executivo, e Remuneração e Gestão
+      de Desempenho — sempre com abordagem customizada à realidade de cada cliente.
+    </p>
+
+    <div class="chip-grid">
+      <span class="chip g">Cultura Organizacional</span>
+      <span class="chip b">Formação de Lideranças</span>
+      <span class="chip p">Seleção &amp; Atração de Talentos</span>
+      <span class="chip r">Mentoria &amp; Coaching Executivo</span>
+      <span class="chip g">Desenvolvimento Organizacional</span>
+      <span class="chip b">Remuneração &amp; Gestão de Desempenho</span>
+      <span class="chip p">Orientação de Carreira</span>
+      <span class="chip r">IA aplicada à Gestão de Pessoas</span>
+    </div>
+  </div>
+</section>
+
+<section id="trajetoria">
+  <div class="wrap">
+    <div class="eyebrow">Trajetória</div>
+    <h2 class="section-title">Mais de 15 anos entre consultoria, empresas e terceiro setor.</h2>
+
+    <div class="timeline">
+      <div class="tl-item g">
+        <div class="tl-dot"></div>
+        <div class="tl-period">Ago 2019 — Atual</div>
+        <div class="tl-role">Diretor de Consultoria</div>
+        <div class="tl-org">People &amp; Paths (Definindo Caminhos)</div>
+        <div class="tl-desc">Frente à consultoria em Cultura Organizacional, Formação de Lideranças, Seleção,
+          Programas de DHO, Mentoria e Coaching Executivo, e Remuneração e Gestão de Desempenho. Desenvolvimento
+          de skills de IA aplicadas à gestão de pessoas (diagnóstico e sugestão de ações em cultura, DHO,
+          desempenho, liderança, carreira e coaching).</div>
+      </div>
+
+      <div class="tl-item p">
+        <div class="tl-dot"></div>
+        <div class="tl-period">Dez 2019 — Dez 2025</div>
+        <div class="tl-role">Consultor de Pessoas → Gerente de Pessoas/HRBP → Gerente de Desenvolvimento Institucional</div>
+        <div class="tl-org">Pimp My Carroça e Cataki</div>
+        <div class="tl-desc">Seis anos à frente da área de Pessoas de uma organização do terceiro setor em forte
+          expansão (15→35 pessoas) e depois readequação (35→20). Modelagem de cultura, três ciclos de planejamento
+          estratégico, gestão por competências, contratação de praticamente toda a equipe da ONG, e condução da
+          transição de Diretoria ao final do ciclo.</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-period">Ago 2023 — Set 2024</div>
+        <div class="tl-role">Consultor de Pessoas</div>
+        <div class="tl-org">Instituto Adus</div>
+        <div class="tl-desc">Consultoria interna de processos, ferramentas e decisões de gestão de pessoas junto à
+          Diretoria de uma organização voltada à causa da imigração — redesenho de remuneração e benefícios,
+          seleção de coordenação e apoio ao ciclo de planejamento estratégico.</div>
+      </div>
+
+      <div class="tl-item b">
+        <div class="tl-dot"></div>
+        <div class="tl-period">Set 2019 — Set 2023</div>
+        <div class="tl-role">Consultor de Pessoas → Gerente de DHO e HRBP</div>
+        <div class="tl-org">Netbr</div>
+        <div class="tl-desc">Estruturação completa da área de Pessoas de uma consultoria de TI em crescimento —
+          seleção executiva, implantação de ATS, programa de formação de lideranças, transição de benefícios e
+          programa de saúde mental.</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-period">2010 — 2019</div>
+        <div class="tl-role">Consultor de Gestão de Pessoas → Gerente de Projetos de DHO → Gerente Financeiro (Board)</div>
+        <div class="tl-org">Business Partners Consulting</div>
+        <div class="tl-desc">Nove anos de consultoria de gestão de pessoas para PMEs e grandes empresas — entre os
+          clientes atendidos: Ultracargo, Banco Cetelem, Itaú, Vivo, Natulab, Yara Fertilizantes, Oxiteno,
+          Tereos, Festo, Brasscom, Claro, Banco Sofisa e Pearson.</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-period">2008 — 2010</div>
+        <div class="tl-role">Consultor</div>
+        <div class="tl-org">KPMG Brasil</div>
+        <div class="tl-desc">Projetos de melhoria de processos com foco em mapeamento, planos de ação e gestão de
+          projetos — clientes como Siemens, Booking.com, Anhanguera Educacional, Chevron e Unialco.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="metodologia">
+  <div class="wrap">
+    <div class="eyebrow">Metodologia</div>
+    <h2 class="section-title">Como conduzimos um processo de coaching e mentoria de liderança.</h2>
+    <p class="section-desc">
+      Um fluxo estruturado, do alinhamento com a empresa até a evidência prática de evolução no dia a dia do gestor —
+      a mesma base metodológica aplicada nos casos individuais de mentoria mostrados a seguir.
+    </p>
+
+    <div class="method-grid">
+      <div class="method-card">
+        <div class="method-num">1</div>
+        <div>
+          <div class="method-title">Alinhamento de objetivos com o gestor responsável</div>
+          <div class="method-desc">Definição conjunta com RH e liderança direta sobre o que precisa evoluir e por quê, antes do início das sessões.</div>
+        </div>
+      </div>
+      <div class="method-card">
+        <div class="method-num">2</div>
+        <div>
+          <div class="method-title">Sensibilização com o coachee</div>
+          <div class="method-desc">Apresentação do processo ao próprio mentorado, construindo abertura e compreensão do propósito da mentoria.</div>
+        </div>
+      </div>
+      <div class="method-card">
+        <div class="method-num">3</div>
+        <div>
+          <div class="method-title">Programação e realização das sessões</div>
+          <div class="method-desc">Ciclo de encontros periódicos, estruturados a partir dos objetivos definidos na etapa de alinhamento.</div>
+        </div>
+      </div>
+      <div class="method-card">
+        <div class="method-num">4</div>
+        <div>
+          <div class="method-title">Elaboração do plano de ação</div>
+          <div class="method-desc">Apoiado por um site de carreira próprio, que centraliza o acesso ao plano de ação, testes comportamentais, análises e demais atividades do processo.</div>
+        </div>
+      </div>
+      <div class="method-card">
+        <div class="method-num">5</div>
+        <div>
+          <div class="method-title">Acompanhamento sistemático</div>
+          <div class="method-desc">Monitoramento contínuo da evolução do plano de ação ao longo do ciclo de mentoria, e não apenas ao final.</div>
+        </div>
+      </div>
+      <div class="method-card">
+        <div class="method-num">6</div>
+        <div>
+          <div class="method-title">Feedback da rede</div>
+          <div class="method-desc">Coleta de percepções de gestores, pares e/ou liderados para trazer perspectivas além do autorrelato do coachee.</div>
+        </div>
+      </div>
+      <div class="method-card">
+        <div class="method-num">7</div>
+        <div>
+          <div class="method-title">Leituras dirigidas</div>
+          <div class="method-desc">Indicação de conteúdos teóricos alinhados ao desafio específico de cada gestor, como apoio conceitual às sessões práticas.</div>
+        </div>
+      </div>
+      <div class="method-card">
+        <div class="method-num">8</div>
+        <div>
+          <div class="method-title">Evidências de competência via ações on the job</div>
+          <div class="method-desc">Consolidação de resultados concretos aplicados à rotina real do gestor, transformando o aprendizado em prática observável.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="casos">
+  <div class="wrap">
+    <div class="eyebrow">Casos de atuação</div>
+    <h2 class="section-title">Projetos que mostram como a gestão de pessoas conecta com o resultado do negócio.</h2>
+
+    <div class="case-grid">
+
+      <div class="case-card tj">
+        <div class="case-top">
+          <div>
+            <div class="case-org">Empresa de Logística do Interior Paulista — DHO, Liderança e Retenção</div>
+            <div class="case-role">Transportadora de grande porte · Consultor e mentor de liderança</div>
+          </div>
+          <div class="case-tags">
+            <span class="case-tag">Cultura Organizacional</span>
+            <span class="case-tag">Desenvolvimento de Liderança</span>
+            <span class="case-tag">Mentoria</span>
+            <span class="case-tag">Seleção</span>
+            <span class="case-tag">Retenção</span>
+            <span class="case-tag">Remuneração</span>
+          </div>
+        </div>
+        <p class="case-body">
+          Atuação contínua como consultor e mentor da Diretoria em uma transportadora de grande porte, cobrindo
+          múltiplas frentes de gestão de pessoas: um Programa de Desenvolvimento de Lideranças (PDL) estruturado
+          em ciclos, com diagnóstico individual e planos de desenvolvimento (PDIs) para supervisores e gerentes;
+          um projeto de transformação cultural conectado às metas de negócio, com engajamento das lideranças em
+          torno de compromissos concretos de gestão; revisão do funil de recrutamento e seleção de motoristas e
+          do mercado de trabalho regional da categoria; e a construção de um protocolo formal de retenção de
+          motoristas, mapeando fatores de desligamento e o processo de investigação interna liderado pelo RH.
+        </p>
+        <div class="case-results">
+          <div class="result-pill">Ciclos completos de <b>mentoria individual</b> para gerentes e supervisores</div>
+          <div class="result-pill">Apoio direto a <b>decisão de promoção</b> a Gerente de Logística</div>
+          <div class="result-pill">Estudo do mercado de trabalho regional para <b>motoristas carreteiros</b></div>
+          <div class="result-pill">Protocolo formal de <b>retenção de motoristas</b> entregue à Diretoria</div>
+        </div>
+      </div>
+
+      <div class="case-card pimp">
+        <div class="case-top">
+          <div>
+            <div class="case-org">Pimp My Carroça e Cataki — Pessoas no Terceiro Setor</div>
+            <div class="case-role">Consultor de Pessoas → Gerente de Pessoas/HRBP → Gerente de Desenvolvimento Institucional</div>
+          </div>
+          <div class="case-tags">
+            <span class="case-tag">Cultura</span>
+            <span class="case-tag">Coaching</span>
+            <span class="case-tag">Conselho Consultivo</span>
+            <span class="case-tag">Seleção</span>
+          </div>
+        </div>
+        <p class="case-body">
+          Seis anos à frente da área de Pessoas de uma organização voltada a catadores de materiais recicláveis,
+          acompanhando sua expansão de 15 para 35 pessoas e, depois, a readequação para 20. Liderei a modelagem
+          de cultura (de um modelo horizontal para um vertical), a gestão do histórico do Conselho Consultivo
+          (mais de 150 ações mapeadas), sete ciclos completos de coaching individual com lideranças, quatro anos
+          consecutivos de gestão por competências e apreciação 180°, e a transição completa de Diretoria ao final
+          do ciclo — incluindo a contratação de praticamente toda a equipe da organização no período.
+        </p>
+        <div class="case-results">
+          <div class="result-pill"><b>3.000+</b> participações de catadores sustentadas no pico de atuação (2022)</div>
+          <div class="result-pill"><b>2.900</b> currículos cadastrados na base de seleção</div>
+          <div class="result-pill"><b>200</b> apreciações 180° em 4 ciclos consecutivos</div>
+          <div class="result-pill"><b>150+</b> ações do Conselho Consultivo documentadas</div>
+        </div>
+      </div>
+
+      <div class="case-card net">
+        <div class="case-top">
+          <div>
+            <div class="case-org">Netbr — Estruturação de DHO em Scale-up de TI</div>
+            <div class="case-role">Consultor de Pessoas → Gerente de DHO e HRBP</div>
+          </div>
+          <div class="case-tags">
+            <span class="case-tag">Seleção &amp; Tecnologia</span>
+            <span class="case-tag">Liderança</span>
+            <span class="case-tag">Benefícios</span>
+            <span class="case-tag">Saúde Mental</span>
+          </div>
+        </div>
+        <p class="case-body">
+          Estruturação da área de Pessoas de uma consultoria de TI (gestão de identidades e acessos) em forte
+          crescimento, do zero ao desenho completo do departamento. Implantação de plataforma de seleção (Gupy),
+          programa de formação de lideranças para duas turmas de novos gestores, transição de plano de saúde
+          ampliando cobertura sem aumento de custo, e condução de um projeto de saúde mental com parceria
+          especializada — incluindo identificação e reversão de um caso de risco.
+        </p>
+        <div class="case-results">
+          <div class="result-pill">Time to fill reduzido de <b>45 para 30 dias</b></div>
+          <div class="result-pill"><b>~700</b> currículos captados em um semestre</div>
+          <div class="result-pill">Programa de liderança para <b>20</b> novos gestores</div>
+          <div class="result-pill">Cobertura de saúde ampliada de <b>40 para 120</b> vidas</div>
+        </div>
+      </div>
+
+      <div class="case-card adus">
+        <div class="case-top">
+          <div>
+            <div class="case-org">Instituto Adus — Consultoria Interna</div>
+            <div class="case-role">Consultor de Pessoas</div>
+          </div>
+          <div class="case-tags">
+            <span class="case-tag">Terceiro Setor</span>
+            <span class="case-tag">Remuneração</span>
+            <span class="case-tag">Liderança</span>
+          </div>
+        </div>
+        <p class="case-body">
+          Consultoria de processos, ferramentas e decisões de gestão de pessoas junto à Diretoria de uma
+          organização voltada à causa da imigração. Apoio à estruturação da rotina de RH interna, redesenho de
+          políticas de remuneração e benefícios, condução de seleção de coordenação e participação ativa em um
+          programa de formação de lideranças para toda a equipe de coordenadores e diretores.
+        </p>
+      </div>
+
+    </div>
+
+    <div class="mentor-block">
+      <div class="mentor-head">
+        <div class="mentor-title">Mentoria de Liderança — casos individuais (empresa de logística do interior paulista)</div>
+        <div class="mentor-sub">Seis frentes do programa de mentoria, ilustrando desafio, abordagem e resultado por posição de liderança. Participantes identificados apenas pelo cargo.</div>
+      </div>
+      <div class="mentor-grid">
+
+        <div class="mentor-card">
+          <div class="mentor-role">Supervisor de Logística (Frota)</div>
+          <div class="mentor-meta">10 sessões · encerrado ago/2026</div>
+          <div class="mentor-line"><span>Desafio</span>Boa absorção dos exercícios em sessão, mas dificuldade em transformar o aprendizado em execução consistente.</div>
+          <div class="mentor-line"><span>Resultado</span>6 objetivos de gestão trabalhados e plano de ação com 10 rotinas consolidado em relatório de fechamento à Diretoria.</div>
+        </div>
+
+        <div class="mentor-card">
+          <div class="mentor-role">Supervisor de Almoxarifado</div>
+          <div class="mentor-meta">8–10 encontros · em andamento</div>
+          <div class="mentor-line"><span>Desafio</span>Fluxo de aprovação de pedidos de peças gerando retrabalho, com aprovadores frequentemente indisponíveis em campo.</div>
+          <div class="mentor-line"><span>Resultado</span>Desenho de solução (ficha única por turno, pré-aprovação de itens de rotina, canal ágil para itens críticos) formalizado como apoio de decisão.</div>
+        </div>
+
+        <div class="mentor-card">
+          <div class="mentor-role">Gerente de Controladoria</div>
+          <div class="mentor-meta">Mentoria em andamento</div>
+          <div class="mentor-line"><span>Desafio</span>Dificuldade em delegar com intencionalidade e em traduzir precisão técnica em decisões mais rápidas.</div>
+          <div class="mentor-line"><span>Resultado</span>Delegação estruturada do fechamento contábil liberou espaço para avançar pautas estratégicas que estavam represadas.</div>
+        </div>
+
+        <div class="mentor-card">
+          <div class="mentor-role">Coordenador de Manutenção</div>
+          <div class="mentor-meta">10 sessões · encerrado jun/2026</div>
+          <div class="mentor-line"><span>Desafio</span>Rotinas de gestão de equipe pouco consistentes e ausência de um PDI formalizado.</div>
+          <div class="mentor-line"><span>Resultado</span>Rotinas de gestão estruturadas e PDI para o 2º semestre 2026 já em aplicação com acompanhamento do RH.</div>
+        </div>
+
+        <div class="mentor-card">
+          <div class="mentor-role">Supervisora de SSMA</div>
+          <div class="mentor-meta">Mentoria em andamento</div>
+          <div class="mentor-line"><span>Desafio</span>Volume disperso de exigências regulatórias e campanhas internas sem priorização clara.</div>
+          <div class="mentor-line"><span>Resultado</span>Mapeamento regulatório e racionalização de campanhas como base para atuação priorizada.</div>
+        </div>
+
+        <div class="mentor-card">
+          <div class="mentor-role">Supervisor de Logística (Frota de Terceiros)</div>
+          <div class="mentor-meta">10 sessões · processo de análise de promoção</div>
+          <div class="mentor-line"><span>Desafio</span>Candidato à gerência de logística — necessidade de leitura estruturada sobre maturidade de gestão e condições para a transição.</div>
+          <div class="mentor-line"><span>Resultado</span>Apresentação de apoio à decisão consolidada para a Diretoria, com análise de potencial e próximos passos recomendados.</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="competencias">
+  <div class="wrap">
+    <div class="eyebrow">Competências</div>
+    <h2 class="section-title">O que mais aparece na prática, ao longo de 15+ anos de atuação.</h2>
+    <p class="section-desc">Levantamento das competências mais recorrentes nas realizações da carreira, da mais para a menos frequente.</p>
+
+    <div class="comp-list">
+      <div class="comp-row top"><div class="comp-rank">1</div><div class="comp-text">Leveza e confiabilidade no relacionamento com decisores</div></div>
+      <div class="comp-row top"><div class="comp-rank">2</div><div class="comp-text">Gestão de pessoas com modelagem para organizações de diversos segmentos e portes</div></div>
+      <div class="comp-row top"><div class="comp-rank">3</div><div class="comp-text">Relacionamento interpessoal, autoconfiança e solidez no atendimento a decisores</div></div>
+      <div class="comp-row top"><div class="comp-rank">4</div><div class="comp-text">Coaching e mentoria — conectar pessoas com seus objetivos</div></div>
+      <div class="comp-row top"><div class="comp-rank">5</div><div class="comp-text">Profissionalismo e maturidade — 20 anos de decisões baseadas em experiência</div></div>
+      <div class="comp-row"><div class="comp-rank">6</div><div class="comp-text">Senso de time — coordenação de lideranças médias</div></div>
+      <div class="comp-row"><div class="comp-rank">7</div><div class="comp-text">Avaliação de desempenho e feedback estruturado</div></div>
+      <div class="comp-row"><div class="comp-rank">8</div><div class="comp-text">Recrutamento e seleção com expertise em rotinas específicas</div></div>
+      <div class="comp-row"><div class="comp-rank">9</div><div class="comp-text">Rotinas de conexão com a cultura das organizações</div></div>
+      <div class="comp-row"><div class="comp-rank">10</div><div class="comp-text">Integração de tecnologia em soluções de RH</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="formacao">
+  <div class="wrap">
+    <div class="eyebrow">Formação</div>
+    <h2 class="section-title">Formação acadêmica e certificações.</h2>
+
+    <div class="edu-grid">
+      <div class="edu-card">
+        <div class="edu-inst">FIA — Fundação Instituto de Administração</div>
+        <div class="edu-course">MBA em Gestão de Recursos Humanos</div>
+        <div class="edu-period">2019 – 2020</div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-inst">UNESP — Universidade Estadual Paulista</div>
+        <div class="edu-course">Bacharelado em Administração</div>
+        <div class="edu-period">2003 – 2008</div>
+      </div>
+    </div>
+
+    <div class="cert-list">
+      <span class="chip g">Professional Coaching Certification — Coaching e Mentoring</span>
+      <span class="chip b">Gerenciamento do Stress</span>
+      <span class="chip p">Orientação Profissional e de Carreira</span>
+      <span class="chip r">Teoria e Prática do Design Instrucional</span>
+    </div>
+    <p class="section-desc" style="margin-top:24px;">Idiomas: Português (nativo), Inglês (fluente), Espanhol (avançado).</p>
+  </div>
+</section>
+
+<section id="contato">
+  <div class="wrap">
+    <div class="contact-card">
+      <div class="contact-title">Vamos conversar sobre o desafio de pessoas da sua empresa?</div>
+      <div class="contact-links">
+        <a href="mailto:pedrohmlozano@gmail.com">pedrohmlozano@gmail.com</a>
+        <a href="https://wa.me/5511998676642" target="_blank" rel="noopener">WhatsApp +55 11 99867-6642</a>
+        <a href="https://linkedin.com/in/pelozano" target="_blank" rel="noopener">linkedin.com/in/pelozano</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="brand">Pedro Lozano</span> · Gestão de Pessoas &amp; Liderança
+</footer>
+
+</body>
+</html>
